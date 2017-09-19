@@ -47,7 +47,7 @@ function _CLIENT_SEND(){
   } else {
     _LABEL_OUTPUT[0].innerHTML = "You can do BTEC computing and A-Level Maths."
   }
-  
+
   cleanDiv("_LABEL_INPUT")
   
   var _TITLE = document.createElement("h4");
@@ -102,24 +102,25 @@ function _CLIENT_SEND(){
       document.getElementById("A_MATHS")
     ]
 
-    if (_NAME_SELECTIONS[0].value == "yes" && _NAME_SELECTIONS[1].value == "yes"){
+    if (_NAME_SELECTIONS[0].value.toLowerCase() == "yes" && _NAME_SELECTIONS[1].value.toLowerCase() == "yes"){
       COUNT = COUNT + 100
-    } else if (_NAME_SELECTIONS[0].value == "yes" && _NAME_SELECTIONS[1].value == "no"){
+    } else if (_NAME_SELECTIONS[0].value.toLowerCase() == "yes" && _NAME_SELECTIONS[1].value.toLowerCase() == "no"){
       COUNT = COUNT + 60
-    } else if (_NAME_SELECTIONS[0].value == "no" && _NAME_SELECTIONS[1].value == "yes"){
+    } else if (_NAME_SELECTIONS[0].value.toLowerCase() == "no" && _NAME_SELECTIONS[1].value.toLowerCase() == "yes"){
       COUNT = COUNT + 60
-      _LABEL_OUTPUT[0].innerHTML = "You have 60 points."
+    } else if (_NAME_SELECTIONS[0].value.toLowerCase() == "no" && _NAME_SELECTIONS[1].value.toLowerCase() == "no"){
+      return _LABEL_OUTPUT[0].innerHTML = "We don't recommend that you do this course at this moment in time. We're sorry.";      
     } else {
-      _LABEL_OUTPUT[0].innerHTML = "You have 0 points."
-      return;
+      return _LABEL_OUTPUT[0].innerHTML = "Invalid input: Please use Yes / No only.";
     }
-        
+
+    _CLEAR_LABEL();   
     cleanDiv("_LABEL_INPUT")
     
     // FIRST LABEL
-    var _LABEL_1 = document.createElement("label");
+    var _LABEL_1 = document.createElement("h4");
 
-    var _LABEL_1_TEXT = document.createTextNode("What do you plan on getting? 'pass','merit' 'distinction' or 'distinction*': ");
+    var _LABEL_1_TEXT = document.createTextNode("What do you plan on getting? a Pass, Merit, Distinction or a Distinction*: ");
     _LABEL_1.appendChild(_LABEL_1_TEXT);
 
     var _INPUT_1 = document.createElement("input");
@@ -143,7 +144,7 @@ function _CLIENT_SEND(){
     _LABEL_INPUT.appendChild(_SECOND_BUTTON);
 
     _SECOND_BUTTON.addEventListener ("click", function() {
-      _VAL = document.getElementById("P_M_D").value
+      _VAL = document.getElementById("P_M_D").value.toLowerCase()
 
       if (_VAL === "pass"){
         COUNT = COUNT + 100
@@ -154,18 +155,17 @@ function _CLIENT_SEND(){
       } else if (_VAL === "distinction*"){
         COUNT = COUNT + 300
       } else {
-        _LABEL_OUTPUT[0].innerHTML = "You entered; " + _JOB_INTERN[0].value + ", This was not a valid value"
-        return;
+        return _LABEL_OUTPUT[0].innerHTML = "Invalid input.";
       }
             
       // ASK ABOUT JOBS AND INTERNSHIPS ETC
-      
+      _CLEAR_LABEL();
       cleanDiv("_LABEL_INPUT")
-  
+
       // FIRST LABEL
       var _LABEL_1 = document.createElement("label");
 
-      var _LABEL_1_TEXT = document.createTextNode("[yes/no] Have you released games/code on the web?: ");
+      var _LABEL_1_TEXT = document.createTextNode("Have you released any code on the web? ");
       _LABEL_1.appendChild(_LABEL_1_TEXT);
 
       var _INPUT_1 = document.createElement("input");
@@ -178,7 +178,7 @@ function _CLIENT_SEND(){
       // SECOND LABEL
       var _LABEL_2 = document.createElement("label");
 
-      var _LABEL_2_TEXT = document.createTextNode("[yes/no] Have you ever done an internship: ");
+      var _LABEL_2_TEXT = document.createTextNode("Have you ever done an internship?");
       _LABEL_2.appendChild(_LABEL_2_TEXT);
 
       var _INPUT_2 = document.createElement("input");
@@ -207,29 +207,29 @@ function _CLIENT_SEND(){
           document.getElementById("INTERN_SHIP")
         ]
         
-        if (_JOB_INTERN[0].value === "yes"){
+        if (_JOB_INTERN[0].value.toLowerCase() === "yes"){
           COUNT = COUNT + 500
-        } else if (_JOB_INTERN[0].value !== "no"){
+        } else if (_JOB_INTERN[0].value.toLowerCase() !== "no"){
           _LABEL_OUTPUT[0].innerHTML = "You entered; " + _JOB_INTERN[0].value + ", This was not a valid value"
           return;     
         }
         
-         if (_JOB_INTERN[1].value === "yes"){
+         if (_JOB_INTERN[1].value.toLowerCase() === "yes"){
           COUNT = COUNT + 300
-        } else if (_JOB_INTERN[1].value !== "no"){
+        } else if (_JOB_INTERN[1].value.toLowerCase() !== "no"){
           _LABEL_OUTPUT[0].innerHTML = "You entered; " + _JOB_INTERN[0].value + ", This was not a valid value"
           return;
         }
         
         // CLEAR DIV
-        
+        _CLEAR_LABEL();
         cleanDiv("_LABEL_INPUT")
         
-        _LABEL_OUTPUT[0].innerHTML = "YOU HAVE GOT "+ COUNT +" POINTS"
+        _LABEL_OUTPUT[0].innerHTML = "You achieved "+ COUNT +" points."
         
         if (COUNT < 300){
           return _LABEL_OUTPUT[1].innerHTML = "You've got less than 300 points, you are unlikely to be able to follow a path in computing"   
-        } else if (COUNT > 300 && COUNT < 1000){
+        } else if (COUNT >= 300 && COUNT <= 1000){
           return _LABEL_OUTPUT[1].innerHTML = "You have be able to follow a path in computing, but you'll find getting a job quite hard"   
         } else if (COUNT > 1000){
           return _LABEL_OUTPUT[1].innerHTML = "You have a chance in this career path, but beware it's quite hard"   
