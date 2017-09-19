@@ -1,19 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700');
 @font-face {
-    font-family: myFirstFont;
+    font-family: headerFont;
     src: url('font.ttf');
 }
 
 * {
-  font-family: myFirstFont;
+	font-family: 'Titillium Web', sans-serif;
 }
 
 .container, body {
+	background: #F5F5F5;
 	margin: 0;
 	padding: 0;
 }
 
 .container .header {
-	box-shadow: 10px 0px 25px #999;
+	font-family: headerFont !important;
+	border-bottom: 7px solid #F6DF00;
 	margin: 0;
 	padding: 0;
 
@@ -31,6 +34,7 @@
 }
 
 .header h1, h3 {
+	font-family: headerFont !important;
 	margin: 0;
 	margin-left: 50px;
 }
@@ -42,13 +46,25 @@
 }
 
 .content {
+	width: 80%;
+	margin: auto;
 	display: flex;
-	height: calc(100vh - 350px);
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	margin-top: 70px;
 
 	font-size: 2em;
+}
+
+.content #_LABEL_INPUT label {
+	width: 50%;
+	text-align: left;
+	margin: 0;
+}
+
+.content h4 {
+	font-weight: 600;
 }
 
 .content input {
@@ -56,6 +72,7 @@
 	font-size: .55em;
 	border: none;
 	margin: auto;
+	background: #F5F5F5;
 	box-shadow: 0px 0px 10px #CDCDCD;
 	border-radius: 2px;
 	padding: 10px;
@@ -72,13 +89,30 @@
 	box-shadow: 0px 0px 10px #CDCDCD;
 	border-radius: 2px;
 	padding: 10px;
-	margin-top: 15px;
+}
+
+.content button:hover {
+	cursor: pointer;
+	opacity: 0.4;
 }
 
 #_LABEL_INPUT, #_LABEL_OUTPUT {
+	padding: 25px !important;
 	display: flex;
 	flex-direction: column;
-	flex-align: center;
+	align-items: center;
+	justify-content: center;
 	text-align: center;
-	width: 80%;
+	width: 100%;
+	background: white;
+	font-size: 0.8em;
+}
+
+#_LABEL_INPUT {
+	border-left: 7px solid #44AAE7;
+}
+
+#_LABEL_OUTPUT {
+	border-left: 7px solid #86C42D;
+	margin-top: 25px !important;
 }

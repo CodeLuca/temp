@@ -1,3 +1,5 @@
+// im being fucking lazy so u might wannt to add extra data validation and i defined everything in the function scope which was a pretty shit idea
+
 function _CLIENT_SEND(){
     
   // FUNCTION DECLERATION
@@ -22,8 +24,7 @@ function _CLIENT_SEND(){
   
   const _LABEL_OUTPUT = [
     document.getElementById("OUTPUT_1"), 
-    document.getElementById("OUTPUT_2"), 
-    document.getElementById("OUTPUT_3")
+    document.getElementById("OUTPUT_2")
   ];
   
   var COUNT = 0
@@ -44,18 +45,23 @@ function _CLIENT_SEND(){
   }
   
   if (_NAME_SELECTIONS[0].value <= 6 || _NAME_SELECTIONS[1].value < 6){
-    _LABEL_OUTPUT[1].innerHTML = "PROCESS END"
-    return _LABEL_OUTPUT[0].innerHTML = "DONT EVEN BOTHER"
+    return _LABEL_OUTPUT[0].innerHTML = "We don't recommend that you do this course at this moment in time. We're sorry."
   } else {
-    _LABEL_OUTPUT[0].innerHTML = "YOU CAN DO BTEC COMPUTING AND/OR A LEVEL MATHS"
+    _LABEL_OUTPUT[0].innerHTML = "You can do BTEC computing and A-Level Maths."
   }
   
   cleanDiv("_LABEL_INPUT")
   
+  var _TITLE = document.createElement("h4");
+  var _TITLE_NODE = document.createTextNode("Would you to do the following courses?");
+  _TITLE.appendChild(_TITLE_NODE);
+  
+  document.getElementById("_LABEL_INPUT").appendChild(_TITLE);
+
   // FIRST LABEL
   var _LABEL_1 = document.createElement("label");
   
-  var _LABEL_1_TEXT = document.createTextNode("[yes/no] Will you do BTEC Computing?: ");
+  var _LABEL_1_TEXT = document.createTextNode("BTEC Computing?");
   _LABEL_1.appendChild(_LABEL_1_TEXT);
   
   var _INPUT_1 = document.createElement("input");
@@ -68,7 +74,7 @@ function _CLIENT_SEND(){
   // SECOND LABEL
   var _LABEL_2 = document.createElement("label");
   
-  var _LABEL_2_TEXT = document.createTextNode("[yes/no] Will you do A level maths?: ");
+  var _LABEL_2_TEXT = document.createTextNode("A level maths?:");
   _LABEL_2.appendChild(_LABEL_2_TEXT);
   
   var _INPUT_2 = document.createElement("input");
@@ -104,10 +110,10 @@ function _CLIENT_SEND(){
       COUNT = COUNT + 60
     } else if (_NAME_SELECTIONS[0].value == "no" && _NAME_SELECTIONS[1].value == "yes"){
       COUNT = COUNT + 60
-      _LABEL_OUTPUT[0].innerHTML = "YOU HAVE GOT 60 POINTS"
+      _LABEL_OUTPUT[0].innerHTML = "You have 60 points."
     } else {
-      _LABEL_OUTPUT[0].innerHTML = "YOU HAVE GOT 0 POINTS"
-      return _LABEL_OUTPUT[1].innerHTML = "PROCESS END"
+      _LABEL_OUTPUT[0].innerHTML = "You have 0 points."
+      return;
     }
     
     _LABEL_OUTPUT[1].innerHTML = "AWAITING INPUT..."
