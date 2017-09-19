@@ -115,10 +115,7 @@ function _CLIENT_SEND(){
       _LABEL_OUTPUT[0].innerHTML = "You have 0 points."
       return;
     }
-    
-    _LABEL_OUTPUT[1].innerHTML = "AWAITING INPUT..."
-    _LABEL_OUTPUT[0].innerHTML = "YOU HAVE GOT "+ COUNT +" POINTS"
-    
+        
     cleanDiv("_LABEL_INPUT")
     
     // FIRST LABEL
@@ -159,13 +156,10 @@ function _CLIENT_SEND(){
       } else if (_VAL === "distinction*"){
         COUNT = COUNT + 300
       } else {
-        _LABEL_OUTPUT[0].innerHTML = "YOU DID NOT ENTER A VALID VALUE: " + _VAL
-        return _LABEL_OUTPUT[1].innerHTML = "PROCESS END"
+        _LABEL_OUTPUT[0].innerHTML = "You entered; " + _JOB_INTERN[0].value + ", This was not a valid value"
+        return;
       }
-      
-      _LABEL_OUTPUT[1].innerHTML = "CONTINUING..."
-      _LABEL_OUTPUT[0].innerHTML = "YOU HAVE GOT "+ COUNT +" POINTS"
-      
+            
       // ASK ABOUT JOBS AND INTERNSHIPS ETC
       
       cleanDiv("_LABEL_INPUT")
@@ -218,15 +212,15 @@ function _CLIENT_SEND(){
         if (_JOB_INTERN[0].value === "yes"){
           COUNT = COUNT + 500
         } else if (_JOB_INTERN[0].value !== "no"){
-          _LABEL_OUTPUT[0].innerHTML = "YOU DID NOT ENTER A VALID VALUE: " + _JOB_INTERN[0].value
-          return _LABEL_OUTPUT[1].innerHTML = "PROCESS END"          
+          _LABEL_OUTPUT[0].innerHTML = "You entered; " + _JOB_INTERN[0].value + ", This was not a valid value"
+          return;     
         }
         
          if (_JOB_INTERN[1].value === "yes"){
           COUNT = COUNT + 300
         } else if (_JOB_INTERN[1].value !== "no"){
-          _LABEL_OUTPUT[0].innerHTML = "YOU DID NOT ENTER A VALID VALUE: " + _JOB_INTERN[0].value
-          return _LABEL_OUTPUT[1].innerHTML = "PROCESS END"          
+          _LABEL_OUTPUT[0].innerHTML = "You entered; " + _JOB_INTERN[0].value + ", This was not a valid value"
+          return;
         }
         
         // CLEAR DIV
@@ -236,11 +230,11 @@ function _CLIENT_SEND(){
         _LABEL_OUTPUT[0].innerHTML = "YOU HAVE GOT "+ COUNT +" POINTS"
         
         if (COUNT < 300){
-          return _LABEL_OUTPUT[1].innerHTML = "YOU'VE GOT LESS THAN 300 POINTS, YOU ARE UNLIKELY TO BE ABLE TO FOLLOW A PATH IN COMPUTING"   
+          return _LABEL_OUTPUT[1].innerHTML = "You've got less than 300 points, you are unlikely to be able to follow a path in computing"   
         } else if (COUNT > 300 && COUNT < 1000){
-          return _LABEL_OUTPUT[1].innerHTML = "YOU MAY BE ABLE TO FOLLOW A PATH IN THIS CAREER BUT FINDING A JOB MAY BE DIFICULT"   
+          return _LABEL_OUTPUT[1].innerHTML = "You have be able to follow a path in computing, but you'll find getting a job quite hard"   
         } else if (COUNT > 1000){
-          return _LABEL_OUTPUT[1].innerHTML = "YOU HAVE A CHANCE IN THIS CAREER PATH BUT BEWARE, IT'S DIFICULT"   
+          return _LABEL_OUTPUT[1].innerHTML = "You have a chance in this career path, but beware it's quite hard"   
         }
       })
     })
