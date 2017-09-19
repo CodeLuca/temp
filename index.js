@@ -1,5 +1,3 @@
-// im being fucking lazy so u might wannt to add extra data validation and i defined everything in the function scope which was a pretty shit idea
-
 function _CLIENT_SEND(){
     
   // FUNCTION DECLERATION
